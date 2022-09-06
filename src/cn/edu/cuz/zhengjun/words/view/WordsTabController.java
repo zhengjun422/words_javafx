@@ -5,6 +5,7 @@ import cn.edu.cuz.zhengjun.words.model.Word;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class WordsTabController {
@@ -18,6 +19,8 @@ public class WordsTabController {
     private TableColumn<Word, String> sensesColumn;
     @FXML
     private TableColumn<Word, String> phoneticColumn;
+    @FXML
+    private TextField wordsSearchTf;
 
     @FXML
     private void initialize(){
@@ -30,7 +33,11 @@ public class WordsTabController {
     }
 
     void initTableViewData(){
-        wordsTableView.setItems(WordsDao.getAllWords());
+        wordsTableView.setItems(WordsDao.getAllWords(""));
     }
 
+    @FXML
+    private void onSearchButtonClicked(){
+        wordsTableView.setItems(WordsDao.getAllWords(wordsSearchTf.getText()));
+    }
 }

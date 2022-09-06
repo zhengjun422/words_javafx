@@ -14,7 +14,7 @@ import java.util.Date;
 
 public class WordsDao {
 
-    public static ObservableList<Word> getAllWords(){
+    public static ObservableList<Word> getAllWords(String text){
         Connection dbConn = OpenDB.getConnection();
         Statement stmt = null;
         ResultSet rs = null;
@@ -22,7 +22,8 @@ public class WordsDao {
         ObservableList<Word> words = FXCollections.observableArrayList();
 
         try {
-            String SQL = "SELECT * from words order by id";
+            String SQL = "SELECT * from words where lemma like '%"
+                    + text + "%' order by id";
             stmt = dbConn.createStatement();
             rs = stmt.executeQuery(SQL);
 
