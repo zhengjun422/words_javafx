@@ -1,4 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.layout.BorderPane?>
-<BorderPane prefHeight="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cn.edu.cuz.zhengjun.words.view.AdminFrameController" />
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.Tab?>
+<BorderPane prefHeight="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cn.edu.cuz.zhengjun.words.view.AdminFrameController" >
+    <center>
+        <TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <Tab text="单词管理">
+                    <content>
+                        <fx:include fx:id="wordsTab" source="wordsTabPage.fxml"/>
+                    </content>
+                </Tab>
+<!--                <Tab text="用户管理">-->
+<!--                    <content>-->
+<!--                        <fx:include fx:id="usersTab" source="usersTabPage.fxml"/>-->
+<!--                    </content>-->
+<!--                </Tab>-->
+            </tabs>
+        </TabPane>
+    </center>
+
+</BorderPane>

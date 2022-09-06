@@ -11,7 +11,7 @@
 <!--            <tabs>-->
 <!--                <Tab text="图书信息">-->
 <!--                    <content>-->
-<!--                        <fx:include fx:id="booksTab" source="booksTabPage.fxml"/>-->
+<!--                        <fx:include fx:id="booksTab" source="wordsTabPage.fxml"/>-->
 <!--                    </content>-->
 <!--                </Tab>-->
 <!--                <Tab text="阅读记录">-->

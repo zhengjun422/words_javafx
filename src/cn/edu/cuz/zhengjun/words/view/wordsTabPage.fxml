@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane prefHeight="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="cn.edu.cuz.zhengjun.words.view.WordsTabController">
+    <center>
+        <BorderPane>
+            <center>
+                <TableView fx:id="wordsTableView" BorderPane.alignment="CENTER">
+                    <columns>
+                        <TableColumn fx:id="idColumn" prefWidth="50.0" text="id"/>
+                        <TableColumn fx:id="lemmaColumn" prefWidth="200.0" text="英文单词"/>
+                        <TableColumn fx:id="sensesColumn" prefWidth="550.0" text="中文释义"/>
+                        <TableColumn fx:id="phoneticColumn" prefWidth="200.0" text="音标"/>
+                    </columns>
+                    <columnResizePolicy>
+                        <TableView fx:constant="UNCONSTRAINED_RESIZE_POLICY"/>
+                    </columnResizePolicy>
+                </TableView>
+            </center>
+
+            <padding>
+                <Insets bottom="8.0" left="8.0" right="8.0" top="8.0"/>
+            </padding>
+        </BorderPane>
+    </center>
+
+</BorderPane>
