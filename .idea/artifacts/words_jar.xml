@@ -3,6 +3,7 @@
     <output-path>$PROJECT_DIR$/out/artifacts/words_jar</output-path>
     <root id="archive" name="words.jar">
       <element id="module-output" name="words_javafx" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/mysql-connector-java-5.1.27.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>
