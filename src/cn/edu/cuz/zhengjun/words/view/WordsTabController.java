@@ -3,9 +3,12 @@ package cn.edu.cuz.zhengjun.words.view;
 import cn.edu.cuz.zhengjun.words.Main;
 import cn.edu.cuz.zhengjun.words.db.WordsDao;
 import cn.edu.cuz.zhengjun.words.model.Word;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import javafx.util.Callback;
 
 import java.util.Optional;
 
@@ -29,6 +32,23 @@ public class WordsTabController {
         lemmaColumn.setCellValueFactory(new PropertyValueFactory<Word, String>("lemma"));
         sensesColumn.setCellValueFactory(new PropertyValueFactory<Word, String>("senses"));
         phoneticColumn.setCellValueFactory(new PropertyValueFactory<Word, String>("phonetic"));
+
+        wordsTableView.setRowFactory(new Callback<TableView<Word>, TableRow<Word>>() {
+            @Override
+            public TableRow<Word> call(TableView<Word> param) {
+                TableRow<Word> row = new TableRow<>();
+                row.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        if(event.getClickCount() == 2 && !row.isEmpty()){
+                            Word word = row.getItem();
+                            showEditWordDialog(word);
+                        }
+                    }
+                });
+                return row;
+            }
+        });
 
         initTableViewData();
     }
@@ -63,6 +83,10 @@ public class WordsTabController {
     @FXML
     private void onEditWordClicked(){
         Word word = wordsTableView.getSelectionModel().getSelectedItem();
+        showEditWordDialog(word);
+    }
+
+    void showEditWordDialog(Word word){
         if (word != null) {
             boolean okClicked = Main.getInstance().showWordEditDialog(word, true);
             if (okClicked) {
