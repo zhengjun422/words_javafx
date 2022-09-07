@@ -68,7 +68,7 @@ public class UserDao {
             }
         } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             if (rs != null)
                 try {
                     rs.close();

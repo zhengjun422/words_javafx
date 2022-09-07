@@ -1,6 +1,8 @@
 package cn.edu.cuz.zhengjun.words;
 
 import cn.edu.cuz.zhengjun.words.db.UserDao;
+import cn.edu.cuz.zhengjun.words.model.Word;
+import cn.edu.cuz.zhengjun.words.view.WordEditDialogController;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -10,8 +12,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class Main extends Application {
     private static Main instance;
@@ -117,6 +123,36 @@ public class Main extends Application {
         }else {
             adminFrameStage.close();
             adminFrameStage = null;
+        }
+    }
+
+    public boolean showWordEditDialog(Word word, boolean isEdit) {
+        try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("view/wordEditDialog.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("编辑单词信息");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(mainFrameStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            // Set the person into the controller.
+            WordEditDialogController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            controller.setWord(word, isEdit);
+
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+
+            return controller.isOkClicked();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
         }
     }
 
